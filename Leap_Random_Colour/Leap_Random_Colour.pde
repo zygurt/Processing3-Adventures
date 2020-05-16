@@ -1,9 +1,11 @@
 import de.voidplus.leapmotion.*;
 
 int blocks =  50;
-int canvas_w = 1920, canvas_h = 1200;
+//int canvas_w = 1920, canvas_h = 1200;
+int canvas_w = 1280, canvas_h = 720;
 int block_w = 50, block_h = 60, block_d = 0;
 boolean blank_flag = false;
+boolean draw_flag = false;
 int frame_count = 1;
 int saved_frames = 1;
 int total_frames = 400;
@@ -18,7 +20,7 @@ void setup(){
   //size(1280,720);
     //size(1920,1200);
   colorMode(HSB, 100);
-  fullScreen(2);
+  fullScreen(1);
   frameRate(25);
   background(0,0,0);
   
@@ -80,6 +82,9 @@ void draw() {
     block_w = int(handStabilized.x/5);
     block_h = int(handStabilized.y/5);
     block_d = int(handStabilized.z);
+    draw_flag = true;
+    }else{
+      draw_flag = false;
     }
     //Clear the screen if hand is rolled
     if (abs(handRoll)>80){
@@ -247,14 +252,14 @@ void draw() {
     float deviceVericalViewAngle = device.getVerticalViewAngle();
     float deviceRange = device.getRange();
   }
-  
+  if (draw_flag){
   if (blank_flag == false){
     for (int b=0;b<int(block_d/20);b++){ //int(abs(canvas_w-block_w)/300)
         fill(0);
         //noFill();
         //stroke(stroke_colour);
         stroke(random(100),100,100);
-        strokeWeight(block_h/8);
+        strokeWeight(abs(block_h/8));
         //rect(random(canvas_w), random(canvas_h), random(block_w), random(block_h));
         //rect(random(canvas_w), random(canvas_h), mouseX/8, mouseY/8);
         ellipse(random(canvas_w), random(canvas_h), block_w, block_w);
@@ -262,7 +267,7 @@ void draw() {
   }else{
     background(0,0,0);
   }
-  
+  }
 }
 
 
