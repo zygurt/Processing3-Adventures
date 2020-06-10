@@ -16,6 +16,7 @@ class Buffer2D {
   }
   ////Shifting Functions
   void shiftLeft(float q){
+    //Insert q at position 0
     for(int i=0;i<rows;i++){
       for(int j=0;j<cols-1;j++){
         buff[i][j] = buff[i][j+1];
@@ -33,6 +34,7 @@ class Buffer2D {
     }
   }
   void shiftUp(float q){
+    //Insert q at position 0
     for(int j=0;j<cols;j++){
       for(int i=0;i<rows-1;i++){
         buff[i][j] = buff[i+1][j];

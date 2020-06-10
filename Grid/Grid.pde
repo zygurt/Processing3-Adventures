@@ -1,6 +1,6 @@
 int buff_size = 16;
-int rows = 32, cols = 32;
-int canvas_w = 1600, canvas_h = 1600; 
+int rows = 20, cols = 20;
+int canvas_w = 600, canvas_h = 600; 
 int w = canvas_w/cols, h = canvas_h/rows;
 
 float step = 0.01;
@@ -9,12 +9,12 @@ Buffer b1 = new Buffer(buff_size);
 Buffer2D b2d = new Buffer2D(rows,cols);
 
 void setup(){
-  size(1600,1600);
+  size(600,600);
   //fullScreen(2);
   background(0);
   //noiseSeed(1);
   frameRate(30);
-  surface.setLocation(1920/4, 1200/4);
+  surface.setLocation(0, 0);
   //Set all of 2D buffer to zero
   b2d.initZeros();
    //Fill the buffer
@@ -52,11 +52,11 @@ void setup(){
 void draw(){
   //clear the background
     background(0);
-    
-    int N = 1024;
-    int n = frameCount;
-    int a = 30;
-    int f = 20;
+    float scale = 30;
+    int N = 2048;
+    int n = frameCount%N;
+    int a = 15;
+    int f_right = 10, f_down = 20;
     
     //Set the stroke and fill
     stroke(255);
@@ -70,25 +70,27 @@ void draw(){
     //Plot the Buffer
     for(int i=0;i<rows;i++){
       for(int j=0;j<cols;j++){
-         fill(((-1*b2d.buff[i][j])+1)*255);
+         fill(((-1*b2d.buff[i][j]/a)+1)*255);
          ellipse(j*w+w/2,i*h+h/2,b2d.buff[i][j],b2d.buff[i][j]);//b2d.buff[i][j]=count;
        }
      }
-    // noiseSeed(frameCount%cols);
+
      
      //Insert new values
-     float sine_val = a*sin(f*TWO_PI*n/N);
-     b2d.shiftRight(sine_val);
+     //float sine_val = a*sin(f_right*TWO_PI*n/N);
+     b2d.shiftDown(a*sin(f_down*TWO_PI*n/N));
+     b2d.shiftRight(a*sin(f_right*TWO_PI*n/N));
      
+     //b2d.shiftRight(a*float(mouseX)/canvas_w);
      
-     
+     //noiseSeed(frameCount%cols);
      //b2d.rotateLeft();
      //for(int i=0;i<rows;i++){
-     //  b2d.buff[i][0]=noise((i+1)*h*step,0);
+     //  b2d.buff[i][0]=a*noise((i+1)*h*step,0);
      //}
      //b2d.rotateUp();
      //for(int j=0;j<cols;j++){
-     //  b2d.buff[cols-1][j]=noise(0,(j+1)*w*step);
+     //  b2d.buff[cols-1][j]=a*noise(0,(j+1)*w*step);
      //}
      //if(frameCount%3==0){
      //  b2d.rotateRight();
@@ -99,6 +101,6 @@ void draw(){
      //if(frameCount%5==0){
      //  b2d.rotateDown();
      //}
-
+ //<>//
     //noLoop(); //<>//
 }
