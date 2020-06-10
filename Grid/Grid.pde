@@ -1,6 +1,6 @@
 int buff_size = 16;
-int rows = 16, cols = 16;
-int canvas_w = 800, canvas_h = 800; 
+int rows = 32, cols = 32;
+int canvas_w = 1600, canvas_h = 1600; 
 int w = canvas_w/cols, h = canvas_h/rows;
 
 float step = 0.01;
@@ -9,11 +9,11 @@ Buffer b1 = new Buffer(buff_size);
 Buffer2D b2d = new Buffer2D(rows,cols);
 
 void setup(){
-  size(800,800);
+  size(1600,1600);
   //fullScreen(2);
   background(0);
   //noiseSeed(1);
-  frameRate(60);
+  frameRate(30);
   surface.setLocation(1920/4, 1200/4);
   //Set all of 2D buffer to zero
   b2d.initZeros();
@@ -56,7 +56,7 @@ void draw(){
     int N = 1024;
     int n = frameCount;
     int a = 30;
-    int f = 10;
+    int f = 20;
     
     //Set the stroke and fill
     stroke(255);
@@ -78,7 +78,7 @@ void draw(){
      
      //Insert new values
      float sine_val = a*sin(f*TWO_PI*n/N);
-     b2d.shiftLeft(sine_val);
+     b2d.shiftRight(sine_val);
      
      
      
