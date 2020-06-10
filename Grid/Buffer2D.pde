@@ -6,6 +6,14 @@ class Buffer2D {
     cols = cols_in;
     buff = new float[rows][cols];
   }
+  void initZeros(){
+    for(int i=0;i<rows;i++){
+      for(int j=0;j<cols-1;j++){
+        buff[i][j] = 0;
+      }
+    }
+    
+  }
   ////Shifting Functions
   void shiftLeft(float q){
     for(int i=0;i<rows;i++){
