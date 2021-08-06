@@ -13,9 +13,9 @@ color pix;
 PImage img;  // Declare variable "a" of type PImage
 
 void setup(){
-  size(1280,720); //<>//
+  size(1280,720);
   frameRate(25);
-  img = loadImage("im.jpg");  // Load the image into the program  
+  img = loadImage("fish.jpg");  // Load the image into the program  
   image(img, 0, 0);
   int[] hist = new int[260];
   int[] peak_loc = new int[0];
@@ -26,10 +26,10 @@ void setup(){
   for (int i = 0; i < img.width; i++) {
     for (int j = 0; j < img.height; j++) {
       pix = img.get(i,j);
-      println(hex(pix)); //<>//
-      //int hue_val = int(hue(get(i, j)));
+      println(hex(pix));
+      int hue_val = int(hue(pix));
       
-      //hist[hue_val+2]++; 
+      hist[hue_val+2]++; 
     }
   }
   //Find peaks in histogram
@@ -74,8 +74,8 @@ void setup(){
 void draw(){
   for (int b=0;b<blocks;b++){
     fill_colour = swatches[int(random(num_swatches))];
-      fill(fill_colour);
-      stroke(fill_colour);
+      fill(color(fill_colour, random(200,255), random(0,255)));
+      stroke(color(fill_colour, random(200,255), random(0,255)));
       rect(random(canvas_w), random(canvas_h), random(block_w), random(block_h));
     }
   //frame_count++;
