@@ -5,8 +5,8 @@
 //Create function for applying next level
 
 int SQUIGGLE_LENGTH = 50;
-int R_DEFAULT = 20;
-float ANGLE_CHANGE = 45;
+int R_DEFAULT = 15;
+float ANGLE_CHANGE = 60;
 int canvas_w = 800, canvas_h = 800; 
 int INIT_VAL = canvas_w/2;
 //int w = canvas_w/40, h = canvas_h/40;
